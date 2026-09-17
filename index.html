@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BASIC AD — Digital Printing Press ERP</title>
+    <meta name="description" content="Enterprise CRM, Inventory, Accounting &amp; Digital Printing Press ERP for BASIC AD with Firebase Firestore Realtime Database, bilingual English/Bangla UI, batch invoice QR verification, and double-entry accounting." />
+    <meta property="og:title" content="BASIC AD — Digital Printing Press ERP" />
+    <meta property="og:description" content="Enterprise CRM, Inventory, Accounting &amp; Digital Printing Press ERP for BASIC AD with Firebase Firestore Realtime Database, bilingual English/Bangla UI, batch invoice QR verification, and double-entry accounting." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('basic_ad_theme');
+          var isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

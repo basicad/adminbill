@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Public invoice verification allows anyone (e.g. mobile QR scan) to verify authenticity safely
+    match /publicInvoices/{invoiceNumber} {
+      allow read, write: if true;
+    }
+
+    // ERP Core collections
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    match /roles/{roleId} {
+      allow read, write: if true;
+    }
+
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+
+    match /vendors/{vendorId} {
+      allow read, write: if true;
+    }
+
+    match /vendorDocuments/{docId} {
+      allow read, write: if true;
+    }
+
+    match /categories/{categoryId} {
+      allow read, write: if true;
+    }
+
+    match /subcategories/{subcategoryId} {
+      allow read, write: if true;
+    }
+
+    match /products/{productId} {
+      allow read, write: if true;
+    }
+
+    match /inventoryTransactions/{txId} {
+      allow read, write: if true;
+    }
+
+    match /invoices/{invoiceId} {
+      allow read, write: if true;
+    }
+
+    match /quotations/{quotationId} {
+      allow read, write: if true;
+    }
+
+    match /estimates/{estimateId} {
+      allow read, write: if true;
+    }
+
+    match /deliveryChallans/{challanId} {
+      allow read, write: if true;
+    }
+
+    match /salesReturns/{returnId} {
+      allow read, write: if true;
+    }
+
+    match /purchases/{purchaseId} {
+      allow read, write: if true;
+    }
+
+    match /purchaseReturns/{returnId} {
+      allow read, write: if true;
+    }
+
+    match /expenses/{expenseId} {
+      allow read, write: if true;
+    }
+
+    match /transactions/{txId} {
+      allow read, write: if true;
+    }
+
+    match /chartOfAccounts/{accountId} {
+      allow read, write: if true;
+    }
+
+    match /bankAccounts/{bankId} {
+      allow read, write: if true;
+    }
+
+    match /loans/{loanId} {
+      allow read, write: if true;
+    }
+
+    match /notifications/{notificationId} {
+      allow read, write: if true;
+    }
+
+    match /activityLogs/{logId} {
+      allow read, write: if true;
+    }
+
+    match /companySettings/{settingId} {
+      allow read, write: if true;
+    }
+
+    match /invoiceSettings/{settingId} {
+      allow read, write: if true;
+    }
+
+    match /paymentMethods/{methodId} {
+      allow read, write: if true;
+    }
+
+    match /marketingSettings/{settingId} {
+      allow read, write: if true;
+    }
+
+    match /qrScanLogs/{logId} {
+      allow read, write: if true;
+    }
+
+    match /moneyReceiptCategories/{catId} {
+      allow read, write: if true;
+    }
+
+    match /moneyReceipts/{receiptId} {
+      allow read, write: if true;
+    }
+
+    // Default catch-all
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+

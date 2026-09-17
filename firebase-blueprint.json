@@ -1,0 +1,231 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based access control.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 100 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "phone": { "type": "string", "maxLength": 30 },
+        "staffId": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["email", "role", "status"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Customer record for CRM and billing.",
+      "type": "object",
+      "properties": {
+        "customerId": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "company": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 250 },
+        "openingBalance": { "type": "number" },
+        "currentDue": { "type": "number" },
+        "totalInvoiced": { "type": "number" },
+        "totalPaid": { "type": "number" },
+        "creditLimit": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["customerId", "name", "phone"]
+    },
+    "Vendor": {
+      "title": "Vendor",
+      "description": "Supplier/Vendor record for purchases.",
+      "type": "object",
+      "properties": {
+        "vendorId": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "company": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 250 },
+        "openingBalance": { "type": "number" },
+        "currentDue": { "type": "number" },
+        "totalPurchased": { "type": "number" },
+        "totalPaid": { "type": "number" },
+        "tradeLicense": { "type": "string", "maxLength": 50 },
+        "nid": { "type": "string", "maxLength": 50 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["vendorId", "name", "phone"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Digital printing press product/material inventory item.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "sku": { "type": "string", "maxLength": 50 },
+        "categoryId": { "type": "string", "maxLength": 50 },
+        "categoryName": { "type": "string", "maxLength": 50 },
+        "subcategoryId": { "type": "string", "maxLength": 50 },
+        "subcategoryName": { "type": "string", "maxLength": 50 },
+        "unit": { "type": "string", "maxLength": 20 },
+        "purchasePrice": { "type": "number" },
+        "salesPrice": { "type": "number" },
+        "openingStock": { "type": "number" },
+        "currentStock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "maxStock": { "type": "number" },
+        "description": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["active", "inactive"] }
+      },
+      "required": ["productId", "name", "unit", "salesPrice"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Digital printing press invoice with auto square-feet calculations and ledger tracking.",
+      "type": "object",
+      "properties": {
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 50 },
+        "customerId": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerPhone": { "type": "string", "maxLength": 30 },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "previousDue": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "currentDue": { "type": "number" },
+        "paymentStatus": { "type": "string", "enum": ["paid", "partial", "due"] },
+        "status": { "type": "string", "enum": ["draft", "saved", "cancelled", "returned"] }
+      },
+      "required": ["invoiceNumber", "date", "customerId", "grandTotal"]
+    },
+    "PublicVerification": {
+      "title": "PublicVerification",
+      "description": "Public invoice verification data without sensitive details.",
+      "type": "object",
+      "properties": {
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "grandTotal": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "currentDue": { "type": "number" },
+        "paymentStatus": { "type": "string", "maxLength": 20 },
+        "verifiedStatus": { "type": "string", "maxLength": 30 },
+        "verifiedMessage": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["invoiceNumber", "verifiedStatus"]
+    },
+    "Quotation": {
+      "title": "Quotation",
+      "description": "Digital printing price estimation and sales quotation document.",
+      "type": "object",
+      "properties": {
+        "quotationNumber": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 50 },
+        "expiryDate": { "type": "string", "maxLength": 50 },
+        "customerId": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerPhone": { "type": "string", "maxLength": 30 },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "tax": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "sent", "accepted", "rejected", "expired", "converted"] }
+      },
+      "required": ["quotationNumber", "date", "customerId", "grandTotal"]
+    },
+    "MoneyReceiptCategory": {
+      "title": "MoneyReceiptCategory",
+      "description": "Classification category for revenue and money receipt collections.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "nameBn": { "type": "string", "maxLength": 100 },
+        "code": { "type": "string", "maxLength": 30 },
+        "description": { "type": "string", "maxLength": 250 },
+        "color": { "type": "string", "maxLength": 30 },
+        "isDefault": { "type": "boolean" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["name", "code"]
+    },
+    "MoneyReceipt": {
+      "title": "MoneyReceipt",
+      "description": "Official money receipt with category classification and itemized receipt details.",
+      "type": "object",
+      "properties": {
+        "receiptNumber": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 50 },
+        "time": { "type": "string", "maxLength": 50 },
+        "categoryId": { "type": "string", "maxLength": 50 },
+        "categoryName": { "type": "string", "maxLength": 100 },
+        "categoryNameBn": { "type": "string", "maxLength": 100 },
+        "customerId": { "type": "string", "maxLength": 50 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerPhone": { "type": "string", "maxLength": 30 },
+        "customerCompany": { "type": "string", "maxLength": 100 },
+        "customerAddress": { "type": "string", "maxLength": 200 },
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "paymentMethod": { "type": "string", "maxLength": 30 },
+        "paymentReference": { "type": "string", "maxLength": 100 },
+        "bankName": { "type": "string", "maxLength": 100 },
+        "totalAmount": { "type": "number" },
+        "amountInWordsEn": { "type": "string", "maxLength": 250 },
+        "amountInWordsBn": { "type": "string", "maxLength": 250 },
+        "previousDue": { "type": "number" },
+        "currentPayment": { "type": "number" },
+        "remainingDue": { "type": "number" },
+        "receivedBy": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["active", "voided"] },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["receiptNumber", "date", "customerName", "totalAmount", "categoryId", "categoryName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles and permissions."
+    },
+    "/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Customer directory with dues and balances."
+    },
+    "/vendors/{vendorId}": {
+      "schema": { "$ref": "#/entities/Vendor" },
+      "description": "Vendor directory with dues and documents."
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Products, services, and inventory items."
+    },
+    "/invoices/{invoiceId}": {
+      "schema": { "$ref": "#/entities/Invoice" },
+      "description": "Printing press invoices."
+    },
+    "/quotations/{quotationId}": {
+      "schema": { "$ref": "#/entities/Quotation" },
+      "description": "Printing press price quotations."
+    },
+    "/publicInvoices/{invoiceNumber}": {
+      "schema": { "$ref": "#/entities/PublicVerification" },
+      "description": "Publicly verifiable invoice records for QR scans."
+    },
+    "/moneyReceiptCategories/{catId}": {
+      "schema": { "$ref": "#/entities/MoneyReceiptCategory" },
+      "description": "Categories for money receipts."
+    },
+    "/moneyReceipts/{receiptId}": {
+      "schema": { "$ref": "#/entities/MoneyReceipt" },
+      "description": "Official money receipts with line item details."
+    }
+  }
+}

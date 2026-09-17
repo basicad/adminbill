@@ -1,0 +1,6 @@
+{
+  "name": "BASIC AD — Digital Printing Press ERP",
+  "description": "Enterprise CRM, Inventory, Accounting & Digital Printing Press ERP for BASIC AD with Firebase Firestore Realtime Database, bilingual English/Bangla UI, batch invoice QR verification, and double-entry accounting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
